@@ -51,4 +51,24 @@ public class ExpEvolution {
         }
         return fastMath();
     }
+    @Benchmark
+    public double approximation5f() {
+        final double sqr = value * value;
+        if (sqr >= 0 && sqr < 1) {
+            double ret = 0.11920104248220616;
+            double y = sqr;
+            ret += 0.1575625754158511 * y;
+            y *= sqr;
+            ret += 0.08932782438172726 * y;
+            y *= sqr;
+            ret += 0.02384996217100889 * y;
+            y *= sqr;
+            ret += -0.006625025107647994 * y;
+            y *= sqr;
+            ret += -0.005778650800243143 * y;
+
+            return ret;
+        }
+        return fastMath();
+    }
 }
