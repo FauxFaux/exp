@@ -35,6 +35,20 @@ public class ExpEvolution {
             // c=np.polyfit(x, y, 2).tolist(); c
             return 0.1034274489106936 * sqr * sqr + 0.15550046971524753 * sqr + 0.11920662709562624;
         }
-        return 1.0 / (1 + FastMath.exp(-1.5 * value * value + 2));
+        return fastMath();
+    }
+
+    @Benchmark
+    public double approximation5() {
+        final double sqr = value * value;
+        if (sqr >= 0 && sqr < 1) {
+            return -0.005778650800243143 * sqr * sqr * sqr * sqr * sqr +
+                    -0.006625025107647994 * sqr * sqr * sqr * sqr +
+                    0.02384996217100889 * sqr * sqr * sqr +
+                    0.08932782438172726 * sqr * sqr +
+                    0.1575625754158511 * sqr +
+                    0.11920104248220616;
+        }
+        return fastMath();
     }
 }
